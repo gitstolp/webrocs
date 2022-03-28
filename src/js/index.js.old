@@ -1,0 +1,56 @@
+import 'ol/ol.css';
+import KML from 'ol/format/KML'
+import Map from 'ol/Map';
+import TileLayer from 'ol/layer/Tile';
+import TileWMS from 'ol/source/TileWMS';
+import View from 'ol/View';
+import VectorSource from 'ol/source/Vector';
+import {Vector as VectorLayer} from 'ol/layer';
+
+const GMRT = new TileLayer({
+    source: new TileWMS({
+      url: 'https://www.gmrt.org/services/mapserver/wms_merc?request=GetCapabilities&service=WMS&version=1.3.0',
+      params: { 'LAYERS' : 'GMRT' },
+    }),
+});
+
+const plot = new VectorLayer({
+	source: new VectorSource({
+		url: 'xyacama.kml',
+		format: new KML(),
+	}),
+});
+
+const map = new Map({
+  layers: [GMRT, plot],
+  target: 'map',
+  view: new View({
+    center: [-10997148, 4569099],
+    zoom: 1,
+  }),
+});
+
+/*
+const displayFeatureInfo = function (pixel) {
+  const features = [];
+  map.forEachFeatureAtPixel(pixel, function (feature) {
+    features.push(feature);
+  });
+  if (features.length > 0) {
+    const info = [];
+    let i, ii;
+    for (i = 0, ii = features.length; i < ii; ++i) {
+      info.push(features[i].get('name'));
+    }
+    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
+    map.getTarget().style.cursor = 'pointer';
+  } else {
+    document.getElementById('info').innerHTML = '&nbsp;';
+    map.getTarget().style.cursor = '';
+  }
+};
+
+
+*/
+
+
