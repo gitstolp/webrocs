@@ -17,7 +17,7 @@ const GMRT = new TileLayer({
 
 var vector = new VectorLayer({
   source: new VectorSource ({
-    url: 'xaymaca.kml',
+    url: 'xaTracks.kml',
     format: new KML(),
   }),
 });
