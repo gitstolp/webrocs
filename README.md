@@ -13,6 +13,15 @@ NOTE: VectorLayer will NOT plot over GMRT map if there are any null or non numbe
 
 --node notes--
 
+Install Node Version Manager nvm with provided bash script "install_nvm.sh"
+
+  -- IMPORTANT NVM COMMANDS
+	nvm ls - list the current version of node installed
+	nvm ls-remote - list current node versions avaiable to NVM
+	nvm install --lts - installs latest available release of node available 			to NVM.
+
+
+
 "npm ls" can be used withing html directory to see a list of node dependancies, which may need to be updated in the future as I do not intend to keep this 
 project up to date.
 
@@ -20,12 +29,13 @@ project up to date.
 
 I experienced some issues attempting to acess the KML file when using apache due to CORS policy.
 
-To remediate this add 
--
+-To remediate this add-
+
+
 Header set Acess-Control-Allow-Origin "*"
 in apache configuration fine (/etc/apache2/apache2.conf)
 under <Directory /var/www> line
 
-
+---------------------------------------------------------------------------
 Author: Griffin Stolp "gitstolp"
 Email: griffin.stolp@mma.edu
