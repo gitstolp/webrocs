@@ -4,6 +4,7 @@ import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import View from 'ol/View';
 import XYZ from 'ol/source/XYZ';
+import Feature from 'ol/Feature';
 import {useGeographic} from 'ol/proj';
 import TileWMS from 'ol/source/TileWMS';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
@@ -15,11 +16,16 @@ const GMRT = new TileLayer({
   }),
 });
 
+const xaTracks = new KML();
+
+const trackLine = new VectorSource ({
+	url: 'xaTracks.kml',
+	format: xaTracks,
+});
+
 var vector = new VectorLayer({
-  source: new VectorSource ({
-    url: 'xaTracks.kml',
-    format: new KML(),
-  }),
+  source: trackLine,
+  
 });
 
 useGeographic();
@@ -29,7 +35,7 @@ var frame = new View({
 	zoom: 10,
 });
 
-const map = new Map({
+var map = new Map({
   layers: [GMRT, vector],
   target: document.getElementById('map'),
   view: frame,
